@@ -18,13 +18,13 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 var show = true;
 
 function showComments() {
-  $("div:regex(id, .*[Cc]o(m|mm)ent.*)").show();
-  $("div:regex(class, .*[Cc]o(m|mm)ent.*)").show();
-  $('div:regex(id, .*disqus_thread.*)').show();
+  $(":regex(id, .*[Cc]o(m|mm)ent.*)").show();
+  $(":regex(class, .*[Cc]o(m|mm)ent.*)").show();
+  $(':regex(id, .*disqus_thread.*)').show();
 }
 
 function hideComments() {
-  $("div:regex(id, .*[Cc]o(m|mm)ent.*)").hide();
-  $("div:regex(class, .*[Cc]o(m|mm)ent.*)").hide();
-  $('div:regex(id, .*disqus_thread.*)').hide();
+  $(":regex(id, .*[Cc]o(m|mm)ent.*)").hide();
+  $(":regex(class, .*[Cc]o(m|mm)ent.*)").hide();
+  $(':regex(id, .*disqus_thread.*)').hide();
 }
