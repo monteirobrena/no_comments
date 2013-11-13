@@ -16,15 +16,32 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 }
 
 var show = true;
+var elementsToShowById = [];
 
 function showComments() {
-  $(":regex(id, .*[Cc]o(m|mm)ent.*)").show();
-  $(":regex(class, .*[Cc]o(m|mm)ent.*)").show();
-  $(':regex(id, .*disqus_thread.*)').show();
+  jQuery.each(elementsToShowById, function() {
+    $(this).show();
+  });
 }
 
 function hideComments() {
-  $(":regex(id, .*[Cc]o(m|mm)ent.*)").hide();
-  $(":regex(class, .*[Cc]o(m|mm)ent.*)").hide();
-  $(':regex(id, .*disqus_thread.*)').hide();
+
+  var disqusExpression = '.*disqus_thread.*';
+  var commentExpression = '.*[Cc]o(m|mm)ent.*';
+  
+  getVisibleElements('id', commentExpression);
+  getVisibleElements('class', commentExpression);
+  getVisibleElements('id', disqusExpression);
+
+  jQuery.each(elementsToShowById, function() {
+    $(this).hide();
+  });
+}
+
+function getVisibleElements(attribute, expression) {
+  $(':regex(' + attribute + ', ' + expression + ')').filter(function() {
+    if ($(this).is(':visible')){
+      elementsToShowById.push($(this));
+    }
+  });
 }
